@@ -3,38 +3,38 @@
     <h1 class=" font-medium">Tasks</h1>
   </div>
 
-  <figure  class="" > 
+  <figure class="flex-collumn items-center justify-center">
 
-    <div class="flex center mx-auto">
-      <%= link_to "New Task", new_task_path %> 
-    </div> 
 
     <ul>
       <h4>Pendding tasks:</h4>
-      <blockquote>
+      <ul>
       <% @tasks.each do |task|%>
         <% unless task.done %>
           <li class="px=2">
-              <%= link_to task.title, task %>
+              <%= link_to task.title, task, class: 'bg-purple-50 px-2 py-2 hover:bg-purple-200' %>
           </li>
         <% end %>
       <% end %>
-      </blockquote>
+      </ul>
 
     </ul>
 
     <ul>
       <h4>Finished tasks:</h4>
-      <blockquote>
+      <ul>
       <% @tasks.each do |task|%>
         <% unless not task.done %>
           <li class="px=2">
-            <%= link_to task.title, task %>
+            <%= link_to task.title, task , class: 'bg-green-50 px-2 py-2 hover:bg-green-200' %>
           </li>
         <% end %>
       <% end %>
-      </blockquote>
+      </ul>
     </ul>
 
+    <ul class="mt-8">
+      <%= link_to "New Task", new_task_path,  class: 'bg-blue-100 px-10 py-4 hover:bg-blue-200'  %> 
+    </ul> 
   </figure>
 </div>

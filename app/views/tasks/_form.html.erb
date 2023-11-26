@@ -1,31 +1,43 @@
-<div>
+<div class="mx-auto">
 <%= form_with model: task do |form| %>
   <div>
-    <%= form.label :title %><br>
+    <div>
+      <%= form.label :title %>
+    </div>
     <%= form.text_field :title %>
-    <% task.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <div class="">
+      <% task.errors.full_messages_for(:title).each do |message| %>
+        <div class="text-red-500 text-sm italic"><%= message %></div>
+      <% end %>
+    </div>
   </div>
 
   <div>
-    <%= form.label :description %><br>
+    <div>
+      <%= form.label :description %>
+    </div>
     <%= form.text_area :description %>
-    <% task.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <div class="">
+      <% task.errors.full_messages_for(:description).each do |message| %>
+        <div class="text-red-500 text-sm italic"><%= message %></div>
+      <% end %>
+    </div>
   </div>
 
   <div>
-    <%= form.label :due_date %><br>
+    <div>
+      <%= form.label :due_date %>
+    </div>
     <%= form.date_field :due_date %>
-    <% task.errors.full_messages_for(:due_date).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <div class="">
+      <% task.errors.full_messages_for(:due_date).each do |message| %>
+        <div class="text-red-500 text-sm italic"><%= message %></div>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit 'Create Task', class: 'bg-blue-100 px-4 py-2 rounded' %>
+  <div class="py-4">
+    <%= form.submit 'Create Task', class: 'bg-blue-100 px-4 py-2 hover:bg-blue-200' %>
   </div>
 <% end %>
 </div>
