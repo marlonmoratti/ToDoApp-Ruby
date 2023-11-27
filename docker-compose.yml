@@ -1,0 +1,12 @@
+# docker-compose.yml
+version: '3'
+services:
+  my_service:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./config/credentials.yml.enc:/rails/config/credentials.yml.enc
+    # Other configurations like ports, volumes, etc., if needed
+    ports:
+      - "3000:3000"  # Map container port 80 to host port 8080
