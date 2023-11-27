@@ -1,43 +1,43 @@
-<div class="mx-auto">
-<%= form_with model: task do |form| %>
-  <div>
-    <div>
-      <%= form.label :title %>
+<div class="max-w-md mx-auto mt-10">
+  <%= form_with model: task do |form| %>
+    <div class="flex flex-col items-center p-2">
+      <div class="text-center mb-4 mx-auto">
+        <%= form.label :title %>
+      </div>
+      <%= form.text_field :title, class: 'w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      <div >
+        <% task.errors.full_messages_for(:title).each do |message| %>
+          <div class="text-red-500 text-sm italic"><%= message %></div>
+        <% end %>
+      </div>
     </div>
-    <%= form.text_field :title %>
-    <div class="">
-      <% task.errors.full_messages_for(:title).each do |message| %>
-        <div class="text-red-500 text-sm italic"><%= message %></div>
-      <% end %>
-    </div>
-  </div>
 
-  <div>
-    <div>
-      <%= form.label :description %>
+    <div class="flex flex-col items-center p-2">
+      <div class="text-center mb-4 mx-auto">
+        <%= form.label :description %>
+      </div>
+      <%= form.text_area :description, class: 'w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      <div >
+        <% task.errors.full_messages_for(:description).each do |message| %>
+          <div class="text-red-500 text-sm italic"><%= message %></div>
+        <% end %>
+      </div>
     </div>
-    <%= form.text_area :description %>
-    <div class="">
-      <% task.errors.full_messages_for(:description).each do |message| %>
-        <div class="text-red-500 text-sm italic"><%= message %></div>
-      <% end %>
-    </div>
-  </div>
 
-  <div>
-    <div>
-      <%= form.label :due_date %>
+    <div class="flex flex-col items-center p-2">
+      <div class="text-center mb-4 mx-auto">
+        <%= form.label :due_date %>
+      </div>
+      <%= form.date_field :due_date, class: 'w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      <div>
+        <% task.errors.full_messages_for(:due_date).each do |message| %>
+          <div class="text-red-500 text-sm italic"><%= message %></div>
+        <% end %>
+      </div>
     </div>
-    <%= form.date_field :due_date %>
-    <div class="">
-      <% task.errors.full_messages_for(:due_date).each do |message| %>
-        <div class="text-red-500 text-sm italic"><%= message %></div>
-      <% end %>
-    </div>
-  </div>
 
-  <div class="py-4">
-    <%= form.submit 'Create Task', class: 'bg-blue-100 px-4 py-2 hover:bg-blue-200' %>
-  </div>
-<% end %>
+    <div class="text-center py-4">
+      <%= form.submit 'Create Task', class: 'bg-blue-100 px-4 py-2 hover:bg-blue-200 rounded no-underline' %>
+    </div>
+  <% end %>
 </div>

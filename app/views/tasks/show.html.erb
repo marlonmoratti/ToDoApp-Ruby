@@ -1,21 +1,43 @@
-<div>
-  <p>title: <%= @task.title %></p>
-  <p>description: <%= @task.description %></p>
-  <p>done: <%= @task.done %></p>
-  <p>due date: <%= @task.due_date %></p>
+<div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-8 p-6">
+  <h1><%= @task.title %></h1>
+  <div class="flex justify-between mb-4">
+    <div>
+      <%= link_to "Edit", edit_task_path(@task), class: 'bg-blue-100 hover:bg-blue-300 no-underline py-2 px-4 rounded' %>
+    </div>
+    <div>
+      <%= link_to "Destroy", task_path(@task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'bg-red-100 hover:bg-red-300 no-underline py-2 px-4 rounded' %>
+    </div>
+    <% if !@task.done %>
+      <div>
+        <%= link_to "Done", done_task_path(@task), data: { turbo_method: :patch }, class: 'bg-green-100 hover:bg-green-300 no-underline py-2 px-4 rounded' %>
+      </div>
+    <% else %>
+      <div>
+        <%= link_to "Reset", done_task_path(@task), data: { turbo_method: :patch }, class: 'bg-yellow-100 hover:bg-yellow-300  no-underline py-2 px-4 rounded' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mb-4">
+    <div class="bg-gray-100 p-2 rounded">
+      <p class="font-bold">Description:</p>
+      <p><%= @task.description %></p>
+    </div>
+
+    <% if @task.due_date %>
+      <% days_until_due = (@task.due_date - Date.today).to_i %>
+      <div class="bg-gray-100 p-2 mt-2 rounded">
+        <p class="font-bold">Due date:</p>
+        <p><%= @task.due_date %></p>
+        <p class="italic <%= days_until_due < 0 ? 'text-red-500' : 'text-green-500' %>">
+          <% if days_until_due >= 0 %>
+            Days until due: <%= days_until_due %> days
+          <% else %>
+            Overdue by <%= -days_until_due %> days
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "Back", tasks_path, class: 'bg-gray-300 hover:bg-gray-400 text-gray-800 no-underline py-2 px-4 rounded' %>
 </div>
-
-<ul>
-  <li><%= link_to "Edit", edit_task_path(@task) %></li>
-  
-  <li><%= link_to "Destroy", task_path(@task), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"
-  } %></li>
-
-  <li><%= link_to "Done", done_task_path(@task), data: {
-    turbo_method: :patch,
-  } %></li>
-</ul>
-
-<%= link_to "Back", tasks_path %>

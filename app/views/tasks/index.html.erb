@@ -1,18 +1,16 @@
-<div class="rounded-md bg-white shadow-xs">
+<div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-16">
   <div class="text-center">
-    <h1 class=" font-medium">Tasks</h1>
+    <h1>Tasks</h1>
   </div>
 
   <figure class="flex-collumn items-center justify-center">
-
-
     <ul>
       <h4>Pendding tasks:</h4>
       <ul>
       <% @tasks.each do |task|%>
         <% unless task.done %>
-          <li class="px=2">
-              <%= link_to task.title, task, class: 'bg-purple-50 px-2 py-2 hover:bg-purple-200' %>
+          <li >
+              <%= link_to task.title, task, class:"border border-gray-200 rounded bg-red-50 hover:bg-red-200 px-2 py-1 no-underline" %>
           </li>
         <% end %>
       <% end %>
@@ -25,16 +23,16 @@
       <ul>
       <% @tasks.each do |task|%>
         <% unless not task.done %>
-          <li class="px=2">
-            <%= link_to task.title, task , class: 'bg-green-50 px-2 py-2 hover:bg-green-200' %>
+          <li>
+            <%= link_to task.title, task, class:"italic no-underline border-dashed border-gray-200 rounded bg-green-50 hover:bg-green-200 px-2 py-1" %>
           </li>
         <% end %>
       <% end %>
       </ul>
     </ul>
 
-    <ul class="mt-8">
-      <%= link_to "New Task", new_task_path,  class: 'bg-blue-100 px-10 py-4 hover:bg-blue-200'  %> 
-    </ul> 
+    <div class="mt-8 text-center">
+      <%= link_to "New Task", new_task_path,  class: 'no-underline rounded bg-blue-100 px-10 py-4 hover:bg-blue-200'  %>
+    </div>
   </figure>
 </div>

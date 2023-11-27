@@ -44,7 +44,8 @@ class TasksController < ApplicationController
 
   def done
     @task = Task.find(params[:id])
-    @task.update(done: true)
+    status = !@task.done
+    @task.update(done: status)
 
     redirect_to root_path
   end
